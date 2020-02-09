@@ -1,39 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-	<form class="form-inline my-2 my-lg-0">
-    The Weather App
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<input name="searchbox" class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search" [(ngModel)]="filterText" />
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <img src="../assets/hitachi-consulting-squarelogo.png" class="rounded-circle" 
+  style="width: 30px; height: 30px;"  alt="Hitachin Consulting Group">
+  <form class="form-inline">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <input name="searchbox" class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search"
+          [(ngModel)]="filterText" />
+      </div>
+      <button class="btn btn-outline-primary" type="submit" (click)="search()" style="margin-left: 1em;">
+        Get Weather
+      </button>
     </div>
-				<button class="btn" type="submit" (click)="search()">
-          <i class="fa fa-mixcloud" style="font-size:24px"></i>
-        </button>
-			</div> 
-
-			<!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a name="menu" class="nav-link" href="#" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-mixcloud" style="font-size:24px"></i>
-          </a>
-          <i><span class="fal fa-ellipsis"></span></i>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Pinned cities</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
-		</div>-->
-
-	</form>
+  </form>
 </nav>
-<div>
-  <!-- {{ weatherData.code}},{{ weatherData.sys.country }}  -->
 
-  
-  <p id='location'></p>
-  <!-- {{weatherData.name}} -->
-</div>
+<!-- *ngIf="weatherData" -->
+<div class="row" style="padding:1em;">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-auto mr-auto">
+            <h5>{{weatherData.name + ',' + weatherData.sys.country}}</h5>
+          </div>
+          <div class="col-auto mr-auto" style="align-content: flex-end;">
+            <!-- <label><input type="checkbox" value="Pinned"> Pin</label> -->
+            <button type="button" class="btn btn-light">
+              <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-light">
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h1>
+              <span class="badge badge-pill badge-light">
+                {{weatherData.main.temp}}
+                <sup>C <sup><i class="fa fa-circle-o" aria-hidden="true"></i></sup></sup>
+              </span>
+            </h1>
+          </div>
+          <div class="col">
+            <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+            {{weatherData.main.temp_max}}
+            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+            / {{weatherData.main.temp_min}}
+            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+            <br>
+            <label>Feels Like: {{weatherData.main.feels_like}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <i class="fa fa-mixcloud" aria-hidden="true"></i>
+            {{weatherData.weather[0].description}}
+          </div>
+          <div class="col">
+            <label>Humidity : {{weatherData.main.humidity}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
