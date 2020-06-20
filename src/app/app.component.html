@@ -8,7 +8,7 @@
         <input name="searchbox" class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search"
           [(ngModel)]="filterText" />
       </div>
-      <button class="btn btn-outline-primary" type="submit" (click)="search()" style="margin-left: 1em;">
+      <button class="btn btn-outline-primary" type="submit" (click)="Search()" style="margin-left: 1em;">
         Get Weather
       </button>
     </div>
@@ -22,11 +22,11 @@
       <div class="card-header">
         <div class="row">
           <div class="col-auto mr-auto">
-            <h5>{{weatherData.name + ',' + weatherData.sys.country}}</h5>
+            <h5>{{weatherData?.name + ',' + weatherData?.sys.country}}</h5>
           </div>
           <div class="col-auto mr-auto" style="align-content: flex-end;">
             <!-- <label><input type="checkbox" value="Pinned"> Pin</label> -->
-            <button type="button" class="btn btn-light">
+            <button type="button" class="btn btn-light" (click)="PinLocation()">
               <i class="fa fa-thumb-tack" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-light">
@@ -40,30 +40,53 @@
           <div class="col">
             <h1>
               <span class="badge badge-pill badge-light">
-                {{weatherData.main.temp}}
+                {{weatherData?.main.temp}}
                 <sup>C <sup><i class="fa fa-circle-o" aria-hidden="true"></i></sup></sup>
               </span>
             </h1>
           </div>
           <div class="col">
             <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
-            {{weatherData.main.temp_max}}
+            {{weatherData?.main.temp_max}}
             <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
-            / {{weatherData.main.temp_min}}
+            / {{weatherData?.main.temp_min}}
             <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
             <br>
-            <label>Feels Like: {{weatherData.main.feels_like}}</label>
+            <label>Feels Like: {{weatherData?.main.feels_like}}</label>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <i class="fa fa-mixcloud" aria-hidden="true"></i>
-            {{weatherData.weather[0].description}}
+            {{weatherData?.weather[0].description}}
           </div>
           <div class="col">
-            <label>Humidity : {{weatherData.main.humidity}}</label>
+            <label>Humidity : {{weatherData?.main.humidity}}</label>
           </div>
         </div>
       </div>
-    </div>
+    </div> 
+    <br>
+    <ul class="list-group">
+      <li *ngFor="let weather of AllWeatherData" class="list-group-item list-group-item-light">
+
+        <span class="badge badge-primary badge-pill">{{weather?.main.temp}}
+          <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+        </span>
+
+        <span style="padding: 5px;" >{{weatherData?.name + ',' + weatherData?.sys.country}}</span>
+        
+
+        <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+            {{weather?.main.temp_max}}
+            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+            / {{weather?.main.temp_min}}
+            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+
+        <!-- <button type="button" class="btn btn-outline-danger btn-xs" style="float: right"> -->
+          <i class="fa fa-times" style="float: right;margin-top: 3px; color: red;" title="Unpin location" aria-hidden="true"></i>
+        <!-- </button> -->
+      </li>
+    </ul>
+  
   </div>
