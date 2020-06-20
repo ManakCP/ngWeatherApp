@@ -66,5 +66,27 @@
         </div>
       </div>
     </div> 
+    <br>
+    <ul class="list-group">
+      <li *ngFor="let weather of AllWeatherData" class="list-group-item list-group-item-light">
+
+        <span class="badge badge-primary badge-pill">{{weather?.main.temp}}
+          <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+        </span>
+
+        <span style="padding: 5px;" >{{weatherData?.name + ',' + weatherData?.sys.country}}</span>
+        
+
+        <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
+            {{weather?.main.temp_max}}
+            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+            / {{weather?.main.temp_min}}
+            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+
+        <!-- <button type="button" class="btn btn-outline-danger btn-xs" style="float: right"> -->
+          <i class="fa fa-times" style="float: right;margin-top: 3px; color: red;" title="Unpin location" aria-hidden="true"></i>
+        <!-- </button> -->
+      </li>
+    </ul>
   
   </div>
