@@ -12,20 +12,12 @@ import { Coord } from './Models/Coord';
 export class AppComponent implements OnInit {
   filterText: string;
   weatherData: WeatherData;
-  AllWeatherData:{};
+  AllWeatherData: WeatherData[] = [];
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
     this.getGeoWeather();
-  }
-
-  search() {
-    this.weatherService.getWeatherByCity(this.filterText).subscribe
-      (
-        data => { this.weatherData = data; },
-        error => { console.log(error); }
-      );
   }
 
   getGeoWeather() {
@@ -39,7 +31,6 @@ export class AppComponent implements OnInit {
         this.weatherService.getWeatherByCoords(coord).subscribe(
           data => {
             this.weatherData = data;
-            console.log(this.weatherData);
           },
           error => {
             console.log(error);
@@ -49,5 +40,18 @@ export class AppComponent implements OnInit {
     } else {
       console.log("Browser not support");
     }
+  }
+  
+  Search() {
+    this.weatherService.getWeatherByCity(this.filterText).subscribe
+      (
+        data => { this.weatherData = data; },
+        error => { console.log(error); }
+      );
+  }
+
+  PinLocation() {
+    this.AllWeatherData[this.AllWeatherData.length] = this.weatherData;
+    console.log(this.AllWeatherData);
   }
 }
