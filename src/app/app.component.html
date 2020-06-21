@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <img src="../assets/hitachi-consulting-squarelogo.png" class="rounded-circle" 
-  style="width: 30px; height: 30px; margin-right: 10px;"  
-  alt="Hitachin Consulting Group" title="Hitachin Consulting Group" />
+  <img src="../assets/hitachi-consulting-squarelogo.png" class="rounded-circle"
+    style="width: 30px; height: 30px; margin-right: 10px;" alt="Hitachin Consulting Group"
+    title="Hitachin Consulting Group" />
   <form class="form-inline">
     <div class="input-group">
       <div class="input-group-prepend">
@@ -26,7 +26,7 @@
           </div>
           <div class="col-auto mr-auto" style="align-content: flex-end;">
             <!-- <label><input type="checkbox" value="Pinned"> Pin</label> -->
-            <button type="button" class="btn btn-light" (click)="PinLocation()">
+            <button type="button" class="btn btn-light" (click)="PinLocation(weatherData)">
               <i class="fa fa-thumb-tack" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-light">
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
     <br>
     <ul class="list-group">
       <li *ngFor="let weather of AllWeatherData" class="list-group-item list-group-item-light">
@@ -74,19 +74,19 @@
           <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
         </span>
 
-        <span style="padding: 5px;" >{{weatherData?.name + ',' + weatherData?.sys.country}}</span>
-        
+        <span style="padding: 5px;">{{weather?.name + ',' + weather?.sys.country}}</span>
+
 
         <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
-            {{weather?.main.temp_max}}
-            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
-            / {{weather?.main.temp_min}}
-            <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+        {{weather?.main.temp_max}}
+        <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
+        / {{weather?.main.temp_min}}
+        <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
 
-        <!-- <button type="button" class="btn btn-outline-danger btn-xs" style="float: right"> -->
-          <i class="fa fa-times" style="float: right;margin-top: 3px; color: red;" title="Unpin location" aria-hidden="true"></i>
-        <!-- </button> -->
+        <a (click)="UnPinLocation(weather)" class="fa fa-times" style="float: right;margin-top: 3px; color: red;"
+          aria-hidden="true"></a>
+
       </li>
     </ul>
-  
+
   </div>

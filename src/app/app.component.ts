@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
       console.log("Browser not support");
     }
   }
-  
+
   Search() {
     this.weatherService.getWeatherByCity(this.filterText).subscribe
       (
@@ -51,12 +51,13 @@ export class AppComponent implements OnInit {
       );
   }
 
-  PinLocation() {
-    this.AllWeatherData[this.AllWeatherData.length] = this.weatherData;
-    console.log(this.AllWeatherData);
+  PinLocation(currentLocation) {
+    if (this.AllWeatherData.indexOf(currentLocation) === -1) {
+      this.AllWeatherData.push(currentLocation);
+    }
   }
 
-  UnPinLocation() {
-    console.log('UnPin location!!')
+  UnPinLocation(currentLocation) {
+    this.AllWeatherData = this.AllWeatherData.filter(x => x != currentLocation);
   }
 }
