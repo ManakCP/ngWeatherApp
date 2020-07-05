@@ -9,7 +9,7 @@
           [(ngModel)]="filterText" />
       </div>
       <button class="btn btn-outline-primary" type="submit" (click)="Search()" style="margin-left: 1em;">
-        Get Weather
+        <i class="fa fa-search" aria-hidden="true"></i>
       </button>
     </div>
   </form>
@@ -23,7 +23,6 @@
         <div class="row">
           <div class="col-auto" style="float:right;">
             <i (click)="PinLocation(weatherData)" class="fa fa-thumb-tack" aria-hidden="true"></i>
-            <!-- <i class="fa fa-refresh" aria-hidden="true"></i> -->
           </div>
           <div class="col-auto">
             <h5>{{weatherData?.name + ',' + weatherData?.sys.country}}</h5>
@@ -33,13 +32,24 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col">
-            <h1>
-              <span class="badge badge-pill badge-light">
-                {{weatherData?.main.temp}}
-                <sup>C <sup><i class="fa fa-circle-o" aria-hidden="true"></i></sup></sup>
-              </span>
-            </h1>
+          
+          <div class="col">            
+              <div class="row">
+                <div class="col-xs">
+                  <img src="http://openweathermap.org/img/wn/{{weatherData?.weather[0].icon}}.png" />
+                </div>
+                <div class="col-xs">
+                  <span>{{weatherData?.weather[0].description}}</span>
+                </div>                
+              </div>
+              <div class="row" style="align-content: center;">                
+                <h3>
+                  <span class="badge badge-pill badge-light">
+                    {{weatherData?.main.temp}}
+                    <sup>C <sup><i class="fa fa-circle-o" aria-hidden="true"></i></sup></sup>
+                  </span>              
+                </h3>
+              </div>
           </div>
           <div class="col">
             <i class="fa fa-thermometer-quarter" aria-hidden="true"></i>
@@ -49,14 +59,6 @@
             <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
             <br>
             <label>Feels Like: {{weatherData?.main.feels_like}}</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <i class="fa fa-mixcloud" aria-hidden="true"></i>
-            {{weatherData?.weather[0].description}}
-          </div>
-          <div class="col">
             <label>Humidity : {{weatherData?.main.humidity}}</label>
           </div>
         </div>
@@ -80,7 +82,7 @@
           <sup><i class="fa fa-circle-o" aria-hidden="true" style="font-size:6px"></i></sup>
 
           <a (click)="UnPinLocation(weather)" class="fa fa-times"
-            style="float: right; color: red; margin-top: 4px; margin-left: 20px;" aria-hidden="true"></a>
+            style="float: right; color: red; margin-top: 4px; margin-left: 10px;" aria-hidden="true"></a>
 
         </span>
 

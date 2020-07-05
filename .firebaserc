@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "weatherapp-20f34"
+  },
+  "targets": {
+    "weatherapp-20f34": {
+      "hosting": {
+        "ngWeatherApp": [
+          "weatherapp-20f34"
+        ]
+      }
+    }
   }
 }
